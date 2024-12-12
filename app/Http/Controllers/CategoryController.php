@@ -12,9 +12,7 @@ class CategoryController extends Controller
      */
     public function index()
     {
-        // Obtenemos todas las categorías
         $categories = Category::all();
-        // Pasamos las categorías a la vista 'categories.index'
         return view('categories.index', compact('categories'));
     }
 
@@ -23,7 +21,6 @@ class CategoryController extends Controller
      */
     public function create()
     {
-        // Retornamos la vista para crear una nueva categoría
         return view('categories.create');
     }
 
@@ -44,9 +41,7 @@ class CategoryController extends Controller
      */
     public function show(string $id)
     {
-        // Obtenemos la categoría por ID
         $category = Category::findOrFail($id);
-        // Mostramos la vista de detalles con la categoría específica
         return view('categories.show', compact('category'));
     }
 
@@ -55,9 +50,7 @@ class CategoryController extends Controller
      */
     public function edit(string $id)
     {
-        // Obtenemos la categoría por ID
         $category = Category::findOrFail($id);
-        // Retornamos la vista para editar la categoría
         return view('categories.edit', compact('category'));
     }
 
@@ -67,7 +60,6 @@ class CategoryController extends Controller
     public function update(CategoryRequest $request, string $id)
     {
         $validatedData = $request->validated();
-
         $category = Category::findOrFail($id);
         $category->update($validatedData);
 
@@ -79,11 +71,9 @@ class CategoryController extends Controller
      */
     public function destroy(string $id)
     {
-        // Buscamos la categoría por ID y la eliminamos
         $category = Category::findOrFail($id);
         $category->delete();
 
-        // Redirigimos a la lista de categorías con un mensaje de éxito
         return redirect()->route('categories.index')->with('success', 'Category successfully removed.');
     }
 }

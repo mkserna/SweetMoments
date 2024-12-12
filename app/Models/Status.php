@@ -2,6 +2,8 @@
 
 namespace App\Models;
 
+use App\Models\Order;
+
 use Illuminate\Database\Eloquent\Model;
 
 class Status extends Model
@@ -10,4 +12,9 @@ class Status extends Model
         'name',
         'description',
     ];
+
+    public function orders()
+    {
+        return $this->hasMany(Order::class);
+    }
 }
